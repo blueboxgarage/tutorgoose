@@ -25,15 +25,33 @@ export default function App() {
     listTodos();
   }, []);
 
+  const [alert, setAlert] = useState({ show: false, message: "" });
+
   function createTodo() {
-    client.models.Todo.create({
-      content: window.prompt("Todo content"),
-    });
+    const content = window.prompt("Todo content");
+    if (content) {
+      client.models.Todo.create({
+        content,
+      });
+      
+      // Show alert
+      setAlert({ show: true, message: `Todo "${content}" added!` });
+      
+      // Hide alert after 3 seconds
+      setTimeout(() => {
+        setAlert({ show: false, message: "" });
+      }, 3000);
+    }
   }
 
   return (
     <main>
       <h1>My todos</h1>
+      {alert.show && (
+        <div className="alert">
+          {alert.message}
+        </div>
+      )}
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
