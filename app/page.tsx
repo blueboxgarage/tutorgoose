@@ -44,6 +44,18 @@ export default function App() {
     }
   }
 
+  function deleteTodo(id: string, content: string) {
+    client.models.Todo.delete({ id });
+    
+    // Show alert
+    setAlert({ show: true, message: `Todo "${content}" deleted!` });
+    
+    // Hide alert after 3 seconds
+    setTimeout(() => {
+      setAlert({ show: false, message: "" });
+    }, 3000);
+  }
+
   return (
     <main>
       <h1>My todos</h1>
@@ -55,7 +67,15 @@ export default function App() {
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+          <li key={todo.id}>
+            {todo.content}
+            <button 
+              onClick={() => deleteTodo(todo.id, todo.content)}
+              className="delete-btn"
+            >
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
       <div>

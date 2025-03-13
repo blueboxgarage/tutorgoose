@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background: yellow;
+    background: blue;
     display: flex;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     height: 100vh;
@@ -72,10 +72,25 @@ body {
   li {
     background-color: white;
     padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   li:hover {
     background: #dadbf9;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    padding: 0.3em 0.6em;
+    font-size: 0.85em;
+    margin-left: 8px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
   }
   
   a {
